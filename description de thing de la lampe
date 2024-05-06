@@ -1,0 +1,93 @@
+{
+    "@context": "https://www.w3.org/2022/wot/td/v1.1",
+    "id": "urn:uuid:31879bab-8d35-4d3d-8d57-ae091eb70c91",
+    "title": "Lampe",
+    "@type":"saref:device",
+    "created":"2024-05-03T10:25:15",
+    "security": ["nosec"],
+    "description":"l'eclairage de la piece",
+    "support":"mailto:amirsouici93@gmail.com",
+
+    "properties": {
+    "intensiteDuCourant":{
+    "type":"number",
+    "title": "l'intensite du courant electrique",
+    "description":"l'intensite variable du courant electrique",
+    "unit":"A",
+    "maximum":"0.45"
+    },
+    "intensiteDuLumiere":{
+    "type":"number",
+    "title": "l'intensite de la lumiere emise par la lampe",
+    "description":"l'intensite variable du la lumiere emise par la lampe",
+    "unit":"%",
+    "maximum":"100.0"
+    },
+    "voltage" :{
+    "type":"number",
+    "title": "les proprieties de la lampe",
+    "description":"la difference de tension entre les bornes de la lampe ",
+    "unit":"Volt",
+    "maximum":"220.0",
+    "readOnly":true
+    },
+    "frequence":{
+    "type":"number",
+    "title": "les proprieties de la lampe",
+    "description":"la frequence de la lampe",
+    "enum":[50.0,60.0],
+    "unit":"Hz",
+    "readOnly":true
+    }
+    },
+
+    "actions": {
+    "définirLuminosité":{
+    "input":{
+    "intensiteDuCourant":{
+        "type":"number",
+        "title": "l'intensite du courant electrique",
+        "description":"l'intensite variable du courant electrique",
+        "unit":"A",
+        "maximum":"0.45",
+        "minimum":"0.0"
+    }},
+    "output":{
+        "intensiteDuLumiere":{
+        "type":"number",
+        "title": "l'intensite de la lumiere emise par la lampe",
+        "description":"l'intensite variable du la lumiere emise par la lampe",
+        "unit":"%",
+        "maximum":"100.0",
+        "minimum":"0.0"
+        }}
+    }},
+
+    "events": {
+    "IntensitéLuminositéModifiée":{
+    "data":{
+        "title":"notification de changement d'intensite de luminosite",
+        "description":"cet event nous informe que l'intensite de la lumiere a ete modifie",
+        "type":"number",
+        "unit": "%",
+        "minimum": 0.0,
+        "maximum": 100.0,
+        "readOnly":true
+    }
+    },
+    
+    "erreur":{
+        "data":{
+            "title":"erreur",
+            "description":"la lampe n'a pas ete capable de modifier l'intensite de la lumiere",
+            "type":"string",
+            "readOnly":true
+        }
+    }
+    }
+    ,"securityDefinitions": {
+        "nosec": {
+            "scheme": "nosec"
+        }
+    }
+}
